@@ -13,7 +13,8 @@ project "discord-rpc"
 
     files
 	{
-		"src/**.cpp"
+		"src/**.cpp",
+        "include/**.h"
 	}
 
     removefiles 
@@ -22,6 +23,7 @@ project "discord-rpc"
     }
 
     filter "system:macosx"
+        staticruntime "On"
 		files {
 			"src/**.m"
 		}
@@ -36,7 +38,16 @@ project "discord-rpc"
 			"_DISCORD_MACOSX"
 		}
 
+        filter "configurations:Debug"
+	        runtime "Debug"
+	        symbols "on"
+        filter "configurations:Release"
+	        runtime "Release"
+	        optimize "on"
+
+
 	filter "system:unix"
+        staticruntime "On"
 		defines {
 			"_DISCORD_UNIX"
 		}	
@@ -46,9 +57,16 @@ project "discord-rpc"
 			"src/connection_win.cpp",
 			"src/discord_register_win.cpp"
 		}
-
+        
+        filter "configurations:Debug"
+	        runtime "Debug"
+	        symbols "on"
+        filter "configurations:Release"
+	        runtime "Release"
+	        optimize "on"
 
 	filter "system:linux"
+        staticruntime "On"
 		defines {
 			"_DISCORD_LINUX"
 		}
@@ -59,8 +77,16 @@ project "discord-rpc"
 			"src/discord_register_win.cpp"
 		}
 
+        filter "configurations:Debug"
+	        runtime "Debug"
+	        symbols "on"
+        filter "configurations:Release"
+	        runtime "Release"
+	        optimize "on"
+
 
 	filter "system:windows"
+        staticruntime "On"
 		defines {
 			"_DISCORD_WINDOWS"
 		}
@@ -70,4 +96,12 @@ project "discord-rpc"
 			"src/connection_unix.cpp",
 			"src/discord_register_linux.cpp"
 		}
+
+    filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		runtime "Release"
+		optimize "on"
 

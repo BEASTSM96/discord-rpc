@@ -6,3 +6,5 @@
 bin
 bin-int
 *.vcxproj
+*.filters
+*.user
